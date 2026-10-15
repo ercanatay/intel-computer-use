@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "intel-computer-use": {
+      "command": "/absolute/path/to/intel-computer-use/scripts/icu",
+      "args": ["serve", "--allow", "com.apple.calculator", "--allow", "com.apple.TextEdit"]
+    }
+  }
+}
