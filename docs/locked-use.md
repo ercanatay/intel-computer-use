@@ -167,9 +167,11 @@ authentication, or fabricate successful installer responses.
 ## Recommendation and next gate
 
 The user approved the [independent Intel compatibility design](superpowers/specs/2026-10-15-intel-compatibility-design.md)
-for Phase 2A planning. Its [implementation plan](superpowers/plans/2026-10-15-intel-compatibility-phase-2a.md)
-awaits review and an execution-method choice; no implementation or installation
-has started. It begins with non-actuating diagnostics while the session is unlocked.
+and its [Phase 2A plan](superpowers/plans/2026-10-15-intel-compatibility-phase-2a.md)
+for native sequential execution. Diagnostic-only A1/A2 work is implemented;
+[actual host routing remains blocked](compatibility.md). No unlock component
+was implemented or installed. [A3 issue #1](https://github.com/ercanatay/intel-computer-use/issues/1)
+tracks the missing eligible route and the separate approval/restoration gate.
 
 Do not install the ARM64 reference or create a placeholder installer.
 A compatibility effort must first specify how the real
