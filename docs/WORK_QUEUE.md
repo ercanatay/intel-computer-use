@@ -29,8 +29,13 @@ Do not open private documents or inspect other apps to obtain test evidence.
 ## Phase 2 boundary
 
 The official Locked Use toggle is not repaired by this independent server.
-The installed vendor unlock service/installer and a supported Intel trust
-contract are missing. See `docs/locked-use.md`. Do not install an authorization
+The installed vendor unlock service/installer and a complete Intel trust
+contract are missing. A read-only same-version ARM64 reference inspection and
+seven isolated IPC checks are now recorded in `docs/locked-use.md`. The original
+authorization plugin checks the service's OpenAI team and signing identity;
+reusing it with an independently signed service is not a viable integration.
+A clean-room replacement remains an unproven design option, not a queued task
+or an authorized installation. See `docs/locked-use.md`. Do not install an authorization
 plugin, weaken authentication, store an OS password, patch ChatGPT, or fabricate
 an installer response. Once useful local work is exhausted, return `blocked`
 with that specific external dependency instead of spending quota indefinitely.
