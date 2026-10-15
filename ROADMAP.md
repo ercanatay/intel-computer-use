@@ -34,7 +34,9 @@ unless vendor support is established. This is planned work, not an available fea
 - [x] Prepare an English independent-compatibility design for user review.
 - [x] Approve the written design for diagnostic-only Phase 2A planning.
 - [x] Prepare the Phase 2A implementation plan for review.
-- [ ] Approve the implementation plan and execution method before starting code.
+- [x] Approve the implementation plan and native sequential execution.
+- [x] Phase 2A A1: bounded, independently signed denial-only diagnostic service.
+- [x] Phase 2A A2: installed-client negotiation/denial in an isolated harness.
 - [ ] Phase 2A: prove real-host diagnostic routing without vendor modification;
   distinguish local harness results from actual desktop-host integration.
 - [ ] Phase 2B: establish authenticated task lifecycle before any action adapter.
@@ -46,15 +48,17 @@ unless vendor support is established. This is planned work, not an available fea
 The phase order is intentional. Native app control and macOS authentication
 integration are separate deliverables; neither is used as proof of the other.
 The [compatibility design](docs/superpowers/specs/2026-10-15-intel-compatibility-design.md)
-is approved for planning, not an implemented service or a Locked Use capability.
+now has an implemented diagnostic A1/A2 subset, not a Locked Use capability.
 The [Phase 2A implementation plan](docs/superpowers/plans/2026-10-15-intel-compatibility-phase-2a.md)
-awaits review. Phase 2C
+was approved for native sequential execution. [A3 remains blocked](docs/compatibility.md),
+so Phase 2A is partial. Phase 2C
 authorization/guardian work needs a later design and separate test-account approval.
 
 ## Current handoff — 2026-10-15
 
 The foreground-input review and live Phase 1 acceptance are complete. The full
-suite passes 59 Python tests and 53 Swift checks; the native debug build passes.
+suite passes 74 Python tests, 53 native guards and 178 compatibility checks;
+both native products build successfully.
 See `VALIDATION.md` for the installed-binary/source distinction and live evidence.
 
 Remaining acceptance work has explicit dependencies:
@@ -66,7 +70,7 @@ Remaining acceptance work has explicit dependencies:
   it checks the service's OpenAI signing and team identifiers. A supported Intel
   payload is still missing. A clean-room replacement is not proven impossible,
   but its complete trust and task-lifecycle contract remains unverified. The
-  independent-compatibility design is approved for planning; its implementation
-  plan awaits review and an execution-method choice.
+  diagnostic A1/A2 implementation is locally verified; no eligible, approved
+  actual-host provider route is established. A3 remains blocked.
   The isolated IPC experiment and native guard
   tests do not establish locked-session support.
