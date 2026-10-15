@@ -1,0 +1,6 @@
+#!/bin/bash
+set -euo pipefail
+
+project_root="$(cd "$(dirname "$0")/.." && pwd)"
+export PYTHONPATH="$project_root/python${PYTHONPATH:+:$PYTHONPATH}"
+exec "${ICU_PYTHON:-python3}" -m intel_computer_use "$@"
