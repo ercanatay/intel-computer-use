@@ -6,7 +6,7 @@
 - [x] Explicit app allowlist, protected targets, session and focus checks.
 - [x] App/window discovery, Accessibility inspection, window screenshot, input.
 - [x] Local bundle builder, installer, status, and diagnostic command.
-- [ ] Live Calculator verification with user-granted macOS permissions.
+- [x] Live Calculator click, keyboard/Unicode calculation, and PNG verification.
 
 ## Background continuation
 
@@ -19,6 +19,11 @@
 
 ## Phase 2 — Locked Use
 
+Target: enable ChatGPT's official **Locked Use** ("Use while locked") setting on
+Intel Macs through a verified, supported integration. Independent MCP control
+does not activate that setting. This is planned work, not an available feature.
+
+- [ ] Verify that the official setting can be enabled and persists on an Intel Mac.
 - [x] Read-only vendor payload and installer diagnostics.
 - [x] Document missing-component evidence and integration requirements.
 - [ ] Obtain a supported Intel-compatible unlock implementation and trust contract.
@@ -28,3 +33,20 @@
 
 The phase order is intentional. Native app control and macOS authentication
 integration are separate deliverables; neither is used as proof of the other.
+
+## Current handoff — 2026-10-15
+
+The foreground-input review and live Phase 1 acceptance are complete. The full
+suite passes 59 Python tests and 53 Swift checks; the native debug build passes.
+See `VALIDATION.md` for the installed-binary/source distinction and live evidence.
+
+Remaining acceptance work is blocked by external dependencies:
+
+- The first scheduled model job ran and saved its thread ID. Exact-thread
+  continuation verification remains pending. Background jobs must not launch
+  other workers or consume credits themselves.
+- Phase 2 requires the missing supported Intel-compatible vendor unlock payload
+  and installer, plus a verifiable trusted-turn authorization contract. A vendor
+  component and its support/signing contract must be supplied before integration
+  or disposable-account validation can proceed. Native guard tests do not
+  establish locked-session support.
