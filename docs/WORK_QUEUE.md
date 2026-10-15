@@ -6,11 +6,17 @@ new project scope or repeatedly retry an external blocker.
 
 ## Next useful task
 
-Review the native foreground-input guards and add focused regression coverage
-where it can be tested without controlling the user's desktop. Verify the
-Python protocol and supervisor suite and the Swift guard executable. Record
-new evidence in `VALIDATION.md`; report concrete findings rather than assuming
-that compilation proves live behavior. Preserve any uncommitted user work.
+The foreground-input review and live Phase 1 acceptance are complete. All 59
+Python tests and 53 Swift checks pass. Calculator click, 12+30=42 through MCP,
+and PNG capture were verified after the user refreshed permissions.
+See `VALIDATION.md` for evidence and the installed-binary/source distinction.
+
+No further autonomous task is queued. Do not repeat the resolved permission
+blocker or rebuild/reinstall the ad-hoc helper merely for verification, as this
+can invalidate granted permissions. Exact-thread worker resumption remains
+unverified; background jobs must not launch other workers themselves. Phase 2
+depends on the vendor implementation and trust contract below; record new
+external evidence before resuming that work.
 
 ## Human-dependent validation
 
