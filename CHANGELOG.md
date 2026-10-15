@@ -7,6 +7,8 @@ has been published yet; the current project version is a development build.
 
 ### Added
 
+- Public A3 integration tracker with a bounded A2 reproduction, upstream
+  references and explicit real-host route evidence, approval and restoration gates.
 - Separate independently signed denial-only IPC-5 diagnostic bundle with strict
   bounded parsing, kernel peer evidence and real-session checks.
 - Optional hash-pinned installed-client A2 harness with private readiness,
