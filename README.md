@@ -82,6 +82,11 @@ The server never approves prompts or resets the TCC database.
 `status` reports the permissions actually observed by the helper. A build that
 passes tests can still need these user-granted permissions before live control.
 
+If Accessibility is enabled but `status` reports it unavailable after an
+ad-hoc-signed rebuild, remove the old Intel Computer Use entry from Accessibility,
+add the installed app again, and enable it yourself. Toggling an old entry may
+not refresh its signing requirement. Do not reset unrelated apps' permissions.
+
 ## Connect to Codex
 
 If `codex` is on your PATH:
@@ -158,6 +163,7 @@ Mac awake or enable locked-session desktop control.
 
 See [ROADMAP.md](ROADMAP.md) for delivery status and
 [Locked Use investigation](docs/locked-use.md) for the Phase 2 boundary.
+Development history is recorded in [CHANGELOG.md](CHANGELOG.md).
 
 ## Verification
 
