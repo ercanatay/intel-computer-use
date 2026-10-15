@@ -40,6 +40,7 @@ the local desktop tools.
 ```bash
 git clone https://github.com/ercanatay/intel-computer-use.git
 cd intel-computer-use
+chmod +x scripts/icu scripts/supervisor
 bash scripts/test.sh
 bash scripts/build.sh
 bash scripts/install.sh
