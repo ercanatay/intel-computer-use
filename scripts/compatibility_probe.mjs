@@ -133,17 +133,25 @@ export async function runDiagnostic(service, exercise, timeoutMilliseconds = 15_
   }
 }
 
-async function probe(app, service) {
-  const verified = await inspectClient(app);
-  if (verified.outcome !== 'verified') return { tier: 'A2', ...verified };
+export async function probe(app, service, { versionReader = readAppVersion, timeoutMilliseconds = 15_000 } = {}) {
   const sockets = new Set();
-  try {
+  let cancelled = false;
+  let timer;
+  const deadline = performance.now() + timeoutMilliseconds;
+  const timedOut = new Promise(resolve => {
+    timer = setTimeout(() => { cancelled = true; resolve({ tier: 'A2', ...failure('failed', 'timeout') }); }, timeoutMilliseconds);
+  });
+  const attempt = async () => {
+    const verified = await inspectClient(app, versionReader);
+    if (cancelled) return { tier: 'A2', ...failure('failed', 'timeout') };
+    if (verified.outcome !== 'verified') return { tier: 'A2', ...verified };
     const result = await runDiagnostic(service, async endpoint => {
+      if (cancelled) throw new Error();
       globalThis.nodeRepl = {
         env: { SKY_CUA_SERVICE_NATIVE_PIPE_PATH: endpoint },
         nativePipe: {
           createConnection: candidate => new Promise((resolve, reject) => {
-            if (candidate !== endpoint) { reject(new Error()); return; }
+            if (cancelled || candidate !== endpoint) { reject(new Error()); return; }
             const socket = net.createConnection({ path: endpoint });
             sockets.add(socket);
             socket.once('connect', () => resolve(socket));
@@ -152,6 +160,7 @@ async function probe(app, service) {
         },
       };
       const { MacComputerUseClient } = await import(pathToFileURL(path.join(verified.directory, 'client.js')).href);
+      if (cancelled) throw new Error();
       const client = new MacComputerUseClient({ timeoutSeconds: 3, codexMetadata: { diagnostic: 'icu-synthetic-only' } });
       const transport = await client.getTransport(API);
       if (transport.isClosed) throw new Error();
@@ -160,9 +169,13 @@ async function probe(app, service) {
       catch (error) { denied = error?.code === -10011; }
       if (!denied) throw new Error();
       return { versionNegotiated: true, operationalDenied: true, syntheticMetadata: true, hostIntegration: false, operationsEnabled: false };
-    });
+    }, Math.max(1, deadline - performance.now()));
     return { tier: 'A2', appVersion: verified.appVersion, appBuild: verified.appBuild, clientHashes: verified.clientHashes, ...result };
-  } finally {
+  };
+  try { return await Promise.race([attempt(), timedOut]); }
+  finally {
+    cancelled = true;
+    clearTimeout(timer);
     for (const socket of sockets) socket.destroy();
     delete globalThis.nodeRepl;
   }
