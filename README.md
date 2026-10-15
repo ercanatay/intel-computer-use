@@ -6,6 +6,8 @@ but omits the native Computer Use service.
 
 **Phase 1:** native app control while the Mac is unlocked.
 **Phase 2:** investigate compatible locked-session operation separately.
+**Phase 2A diagnostic:** bounded IPC-5 negotiation and denial-only service;
+[isolated A2 observed, actual host routing blocked](docs/compatibility.md).
 This project does not currently enable ChatGPT's official **Locked Use** setting.
 It is not affiliated with or endorsed by OpenAI.
 
