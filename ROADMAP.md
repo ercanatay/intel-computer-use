@@ -32,7 +32,9 @@ unless vendor support is established. This is planned work, not an available fea
 - [x] Characterize the installed IPC-5 client with seven isolated, in-memory
   checks; confirm the vendor authorization plugin's peer-identity check.
 - [x] Prepare an English independent-compatibility design for user review.
-- [ ] Approve the written design and a separate diagnostic-only Phase 2A plan.
+- [x] Approve the written design for diagnostic-only Phase 2A planning.
+- [x] Prepare the Phase 2A implementation plan for review.
+- [ ] Approve the implementation plan and execution method before starting code.
 - [ ] Phase 2A: prove real-host diagnostic routing without vendor modification;
   distinguish local harness results from actual desktop-host integration.
 - [ ] Phase 2B: establish authenticated task lifecycle before any action adapter.
@@ -44,7 +46,9 @@ unless vendor support is established. This is planned work, not an available fea
 The phase order is intentional. Native app control and macOS authentication
 integration are separate deliverables; neither is used as proof of the other.
 The [compatibility design](docs/superpowers/specs/2026-10-15-intel-compatibility-design.md)
-is a draft, not an implemented service or a Locked Use capability. Phase 2C
+is approved for planning, not an implemented service or a Locked Use capability.
+The [Phase 2A implementation plan](docs/superpowers/plans/2026-10-15-intel-compatibility-phase-2a.md)
+awaits review. Phase 2C
 authorization/guardian work needs a later design and separate test-account approval.
 
 ## Current handoff — 2026-10-15
@@ -61,7 +65,8 @@ Remaining acceptance work has explicit dependencies:
 - Phase 2 has a verified blocker for reusing the original authorization plugin:
   it checks the service's OpenAI signing and team identifiers. A supported Intel
   payload is still missing. A clean-room replacement is not proven impossible,
-  but its complete trust and task-lifecycle contract remains unverified. A draft
-  independent-compatibility design now awaits written review and a separate plan.
+  but its complete trust and task-lifecycle contract remains unverified. The
+  independent-compatibility design is approved for planning; its implementation
+  plan awaits review and an execution-method choice.
   The isolated IPC experiment and native guard
   tests do not establish locked-session support.
