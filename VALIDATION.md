@@ -4,8 +4,10 @@ This document separates executable tests from live desktop evidence.
 
 ## Automated
 
-- Python protocol, policy, native transport, stdio, supervisor, and smoke tests: 59 passing.
+- Python protocol, policy, native transport, stdio, supervisor, smoke, and optional-harness tests: 74 passing on this Mac.
 - Swift policy, session, deadline, coordinate, keyboard, and foreground-input checks: 53 passing.
+- Separate compatibility executable: 178 framing, strict JSON/policy, runtime,
+  peer-evidence, real-socket and simulated-lifecycle checks passing.
 - Native debug/release build: successful on x86_64 with Swift 6.
 - Installed independent bundle: strict code-signature verification successful;
   executable matches the release artifact.
@@ -73,3 +75,20 @@ transport and lifecycle are tested with fake subprocesses.
 ## Locked Use
 
 Not implemented or verified. See [Phase 2](docs/locked-use.md).
+
+## Compatibility diagnostic — 2026-10-15
+
+The separate independently signed x86_64 diagnostic builds and verifies.
+The installed Phase 1 executable is unchanged: SHA-256
+`7bab5305979b7407a0a0a52ea4121164b71f6b4c75596746f846e57292824b82`,
+code-directory hash `1ecefd17f0d56f2ad33a0661492f0c6ac75dde04`.
+No permissions were requested or changed.
+
+A1 uses real Unix sockets but fake clocks/session events and failure fixtures.
+A2 imports the hash-pinned installed client from ChatGPT 26.1007.71326 (20398),
+negotiates IPC-5 and observes `-10011` on a synthetic Calculator policy request;
+no app content is accessed. Three consecutive A2 runs passed after an earlier
+unexplained generic failure. A3 is blocked: no eligible actual-host provider
+route is established. No host override or restart was attempted. Phase 2A
+remains partial. See the [runbook and limits](docs/compatibility.md), including
+cold-start uncertainty. No live lock/sleep/wake or unlock test was performed.
