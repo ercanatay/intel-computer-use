@@ -4,6 +4,9 @@
 This independent diagnostic cannot enable ChatGPT's Locked Use setting or
 control apps. It is not an OpenAI provider or authorization plugin.
 
+Track the remaining real-host gate in [A3 integration issue #1](https://github.com/ercanatay/intel-computer-use/issues/1),
+including the bounded reproduction, requested evidence and approval/restoration checklist.
+
 ## Evidence — 2026-10-15
 
 | Tier | Meaning | Observed result |
@@ -93,6 +96,16 @@ The harness has a 15-second overall timeout, forwards a small OS-variable
 allowlist and terminates only its owned child group, escalating after one second.
 
 ## A3 assessment and next gate
+
+A documentation/upstream review on 2026-10-15 did not establish an eligible
+provider route. Existing [integration-contract](https://github.com/openai/codex/issues/44155)
+and [missing-service](https://github.com/openai/codex/issues/42514) discussions
+remain community evidence, not vendor support commitments. Our issue tracks
+this project's acceptance gate; no duplicate upstream issue or comment was posted.
+Official [Computer Use](https://learn.chatgpt.com/docs/computer-use#locked-use)
+and [local-security](https://learn.chatgpt.com/docs/enterprise/chatgpt-work-local-security)
+documentation describes the trusted-task boundary but does not establish an
+independent-provider registration contract in the material reviewed.
 
 Read-only inspection of installed `.vite/build/main-CwxgTOle.js` and the Mac
 client found `SKY_CUA_SERVICE_PATH` and `SKY_CUA_SERVICE_NATIVE_PIPE_PATH`.
