@@ -6,8 +6,8 @@ new project scope or repeatedly retry an external blocker.
 
 ## Next useful task
 
-The foreground-input review and live Phase 1 acceptance are complete. All 59
-Python tests and 53 Swift checks pass. Calculator click, 12+30=42 through MCP,
+The foreground-input review and live Phase 1 acceptance are complete. All 74
+Python tests, 53 native guards and 178 compatibility checks pass. Calculator click, 12+30=42 through MCP,
 and PNG capture were verified after the user refreshed permissions.
 See `VALIDATION.md` for evidence and the installed-binary/source distinction.
 
@@ -19,10 +19,12 @@ depends on the vendor implementation and trust contract below; record new
 external evidence before resuming that work.
 
 The user approved the [written independent-compatibility design](superpowers/specs/2026-10-15-intel-compatibility-design.md)
-for Phase 2A planning. The [implementation plan](superpowers/plans/2026-10-15-intel-compatibility-phase-2a.md)
-now awaits review and an execution-method choice. No implementation is queued:
-do not start a compatibility service, unpause the supervisor, or run a real-host
-routing experiment. A quota reset does not bypass the pending plan-review gate.
+and then the [implementation plan](superpowers/plans/2026-10-15-intel-compatibility-phase-2a.md)
+for native sequential execution. Diagnostic A1/A2 work is implemented and
+locally verified; [A3 is blocked](compatibility.md) by the absence of an eligible
+actual-host provider route. No further autonomous task is queued. Do not
+unpause the supervisor, retry indefinitely, or change host routing. A newly
+evidenced exact route needs separate approval; quota resets do not bypass it.
 
 ## Human-dependent validation
 
