@@ -26,6 +26,11 @@ has been published yet; the current project version is a development build.
   independently testable guards, adding twelve native regression checks.
 - Recorded successful live Calculator click, keyboard/Unicode input, and PNG
   screenshot verification separately from automated test results.
+- Compared the same-version official Apple Silicon distribution read-only;
+  documented six ARM64-only components, verified signatures, the installer and
+  IPC-5 contracts, and the authorization plugin's service-identity check.
+- Recorded seven passing throwaway client-characterization checks separately
+  from the maintained suite; no real native service or unlock was exercised.
 
 ### Fixed
 
