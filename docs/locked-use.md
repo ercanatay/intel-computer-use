@@ -162,10 +162,10 @@ authentication, or fabricate successful installer responses.
 
 ## Recommendation and next gate
 
-The user selected preparation of an independent Intel compatibility design.
-The [draft design](superpowers/specs/2026-10-15-intel-compatibility-design.md)
-is ready for review; no implementation or installation is approved by that
-document. It starts with non-actuating diagnostics while the session is unlocked.
+The user approved the [independent Intel compatibility design](superpowers/specs/2026-10-15-intel-compatibility-design.md)
+for Phase 2A planning. Its [implementation plan](superpowers/plans/2026-10-15-intel-compatibility-phase-2a.md)
+awaits review and an execution-method choice; no implementation or installation
+has started. It begins with non-actuating diagnostics while the session is unlocked.
 
 Do not install the ARM64 reference or create a placeholder installer.
 A compatibility effort must first specify how the real
