@@ -8,7 +8,7 @@ control apps. It is not an OpenAI provider or authorization plugin.
 
 | Tier | Meaning | Observed result |
 | --- | --- | --- |
-| A1 | Our parser, policy, Unix sockets and simulated lifecycle | 178 compatibility checks, 73 Python tests, 53 existing native guards passed |
+| A1 | Our parser, policy, Unix sockets and simulated lifecycle | 178 compatibility checks, 74 Python tests, 53 existing native guards passed |
 | A2 | Installed client in an isolated Node harness | IPC-5 negotiation and operational error `-10011` observed with synthetic metadata |
 | A3 | A request from the actual desktop host reaches our service | Blocked: no eligible, approved provider route established; native computer APIs disabled in this session |
 
