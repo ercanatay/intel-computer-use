@@ -40,8 +40,11 @@ def main():
     window = max(windows, key=lambda entry: entry["width"] * entry["height"])
     target = {"bundle_id": "com.apple.calculator", "window_id": window["window_id"]}
     call("snapshot", **target, include_screenshot=False)
-    for key in ["Escape", "1", "2", "shift+equal", "3", "0", "Return"]:
-        call("press_key", **target, key=key)
+    for key in ["Escape", "1", "2", "+", "3", "0", "Return"]:
+        if key == "+":
+            call("type_text", **target, text=key)
+        else:
+            call("press_key", **target, key=key)
         time.sleep(0.08)
         call("snapshot", **target, include_screenshot=False)
     result = call("snapshot", **target, include_screenshot=False)
