@@ -52,6 +52,20 @@ public enum CapturePolicy {
     }
 }
 
+public enum ForegroundInputPolicy {
+    public static func requireFrontmost(targetPID: Int32, frontmostPID: Int32?, terminated: Bool) throws {
+        guard !terminated, frontmostPID == targetPID else {
+            throw BridgeFailure("focus_changed", "Input stopped because the target app lost focus.")
+        }
+    }
+
+    public static func requirePointOwner(targetPID: Int32, hitPID: Int32?, targetWindowMatches: Bool) throws {
+        guard hitPID == targetPID, targetWindowMatches else {
+            throw BridgeFailure("point_occluded", "Another window covers the selected point. Input was not sent.")
+        }
+    }
+}
+
 public struct OperationDeadline: Sendable {
     public let unixMilliseconds: Double
 
