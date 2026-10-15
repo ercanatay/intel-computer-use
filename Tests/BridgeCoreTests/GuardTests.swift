@@ -3,6 +3,15 @@ import Foundation
 
 @main
 struct GuardChecks {
+    static func expectFailure(_ code: String, _ operation: () throws -> Void) throws {
+        do {
+            try operation()
+        } catch let failure as BridgeFailure where failure.code == code {
+            return
+        }
+        throw NSError(domain: "GuardChecks", code: 5, userInfo: [NSLocalizedDescriptionKey: "Expected failure: \(code)"])
+    }
+
     static func expectDenied(_ operation: () throws -> Void) throws {
         do {
             try operation()
@@ -48,6 +57,34 @@ struct GuardChecks {
             throw NSError(domain: "GuardChecks", code: 4, userInfo: [NSLocalizedDescriptionKey: "Secure fields must be omitted before reading text."])
         }
         count += 3
+        for frontmostPID: Int32? in [42, 99, nil] {
+            for terminated in [false, true] {
+                let check = {
+                    try ForegroundInputPolicy.requireFrontmost(targetPID: 42,
+                        frontmostPID: frontmostPID, terminated: terminated)
+                }
+                if frontmostPID == 42 && !terminated {
+                    try check()
+                } else {
+                    try expectFailure("focus_changed", check)
+                }
+                count += 1
+            }
+        }
+        for hitPID: Int32? in [42, 99, nil] {
+            for targetWindowMatches in [false, true] {
+                let check = {
+                    try ForegroundInputPolicy.requirePointOwner(targetPID: 42,
+                        hitPID: hitPID, targetWindowMatches: targetWindowMatches)
+                }
+                if hitPID == 42 && targetWindowMatches {
+                    try check()
+                } else {
+                    try expectFailure("point_occluded", check)
+                }
+                count += 1
+            }
+        }
         try OperationDeadline(unixMilliseconds: 2000).requireValid(now: 1)
         for deadline in [999.0, 1000.0, .infinity, .nan] {
             try expectDenied { try OperationDeadline(unixMilliseconds: deadline).requireValid(now: 1) }
