@@ -7,6 +7,13 @@ has been published yet; the current project version is a development build.
 
 ### Added
 
+- Separate independently signed denial-only IPC-5 diagnostic bundle with strict
+  bounded parsing, kernel peer evidence and real-session checks.
+- Optional hash-pinned installed-client A2 harness with private readiness,
+  sanitized reports and owned child-group cleanup; 178 compatibility checks
+  and fifteen optional Node-harness regressions. No vendor code redistribution.
+- Compatibility runbook: A1/A2 observed, A3 blocked; Phase 2A remains partial
+  and does not enable Locked Use.
 - Independent Swift native helper for Intel Macs running macOS 14 or later.
 - Dependency-free Python MCP server with app/window discovery, Accessibility
   snapshots, window screenshots, clicking, Unicode typing, key chords, and scrolling.
@@ -21,11 +28,11 @@ has been published yet; the current project version is a development build.
 - Public GitHub repository accepting community issues and pull requests.
 - Draft English architecture for an independently signed Intel compatibility
   layer, with diagnostic-only interoperability, authenticated-task, and isolated
-  locked-use gates. This is a design document, not an implemented feature.
+  locked-use gates. The complete locked-use layer remains unimplemented.
 - Diagnostic-only Phase 2A implementation plan with explicit interfaces,
   red-green checks, private transport, peer evidence, bounded lifecycle, and
   separate A1/A2/A3 acceptance. The design is approved for planning; execution
-  remains pending plan review and method selection.
+  was subsequently approved for native sequential diagnostic-only execution.
 
 ### Changed
 
