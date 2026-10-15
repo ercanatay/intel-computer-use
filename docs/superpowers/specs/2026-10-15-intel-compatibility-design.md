@@ -1,6 +1,6 @@
 # Intel Compatibility Layer Design
 
-Status: **Draft for user review. Not implemented.**
+Status: **Design approved for Phase 2A planning on 2026-10-15. Not implemented.**
 
 ## Intent and approval boundary
 
@@ -9,10 +9,11 @@ that can communicate with the real ChatGPT desktop Computer Use client without
 patching ChatGPT or weakening macOS authentication. The eventual goal remains
 useful Computer Use while locked, not merely making a settings toggle look on.
 
-The user approved preparing this English design. That approval does not approve
-an implementation plan, installation, app restart, privileged changes, or a live
-unlock experiment. Written-design review comes next; implementation planning
-follows only after approval. Publication does not imply feature availability.
+The user approved this written design for Phase 2A planning on 2026-10-15.
+The [implementation plan](../plans/2026-10-15-intel-compatibility-phase-2a.md)
+now awaits review and an execution-method choice. Design approval does not
+approve code execution, installation, app restart, privileged changes, or a live
+unlock experiment. Publication does not imply feature availability.
 
 This document extends the original design's Phase 2 research direction. All
 existing Phase 1 guards remain unchanged. Its proposed implementation scope is
@@ -243,14 +244,14 @@ display protection, password/keychain behavior, or safe temporary unlocking.
 
 ## Review checklist
 
-- [ ] User approves this written design and its diagnostic-only scope.
+- [x] User approves this written design and its diagnostic-only scope for planning.
 - [ ] A separate Phase 2A implementation plan is written and approved.
 - [ ] A concrete real-host route and rollback receive approval before use.
 - [ ] Phase 2B and 2C receive separate designs and approvals if earlier gates pass.
 
 No live compatibility implementation or unlock test has been performed under
-this design. The next deliverable after written-design approval is the 2A
-implementation plan, not an authorization plugin.
+this design. The 2A implementation plan is now written and awaiting review;
+the next gate is plan approval, not an authorization plugin.
 
 ## Sources
 
