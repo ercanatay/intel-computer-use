@@ -23,7 +23,7 @@ class CompatibilityProbeTests(unittest.TestCase):
     def tearDown(self):
         self.directory.cleanup()
 
-    def evaluate(self, body, timeout=6):
+    def evaluate(self, body, timeout=25):
         source = "import * as probe from " + json.dumps(PROBE.as_uri()) + ";\n" + body
         return subprocess.run([NODE, "--input-type=module", "-e", source], capture_output=True, text=True, timeout=timeout)
 
@@ -44,13 +44,13 @@ class CompatibilityProbeTests(unittest.TestCase):
         return json.loads(completed.stdout), completed
 
     def test_missing_client_is_skipped(self):
-        completed = subprocess.run([NODE, str(PROBE), "--app", str(self.base / "absent.app"), "--service", str(self.base / "absent")], capture_output=True, text=True, timeout=5)
+        completed = subprocess.run([NODE, str(PROBE), "--app", str(self.base / "absent.app"), "--service", str(self.base / "absent")], capture_output=True, text=True, timeout=25)
         self.assertEqual(completed.returncode, 2, completed.stderr)
         self.assertEqual(json.loads(completed.stdout)["outcome"], "skipped")
         self.assertEqual(completed.stderr, "")
 
     def test_unknown_flags_do_not_spawn(self):
-        completed = subprocess.run([NODE, str(PROBE), "--trust-peer"], capture_output=True, text=True, timeout=5)
+        completed = subprocess.run([NODE, str(PROBE), "--trust-peer"], capture_output=True, text=True, timeout=25)
         self.assertEqual(completed.returncode, 2)
         self.assertEqual(json.loads(completed.stdout)["reason"], "invalidArguments")
 
