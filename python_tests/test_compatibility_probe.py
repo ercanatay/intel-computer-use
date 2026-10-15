@@ -101,6 +101,13 @@ class CompatibilityProbeTests(unittest.TestCase):
         environment = json.loads(completed.stdout)
         self.assertEqual(environment, {"PATH": "/usr/bin", "HOME": "/home/test"})
 
+    def test_overall_timeout_also_bounds_client_preflight(self):
+        completed = self.evaluate("const start=performance.now(); const report=await probe.probe('/missing.app','/must-not-launch',{versionReader:()=>new Promise(resolve=>setTimeout(()=>resolve({version:'unknown',build:'0'}),500)),timeoutMilliseconds:50}); console.log(JSON.stringify({report,elapsed:performance.now()-start}));")
+        self.assertEqual(completed.returncode, 0, completed.stderr)
+        result = json.loads(completed.stdout)
+        self.assertEqual(result["report"]["reason"], "timeout")
+        self.assertLess(result["elapsed"], 450)
+
     def test_timeout_terminates_owned_descendants(self):
         pid_file = self.base / "descendant"
         source = "const child=require('child_process').spawn(process.execPath,['-e','setInterval(()=>{},1000)'],{stdio:'ignore'}); require('fs').writeFileSync(" + json.dumps(str(pid_file)) + ",String(child.pid)); setInterval(()=>{},1000);"
