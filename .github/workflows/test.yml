@@ -16,4 +16,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: swift run bridge-core-checks
+      - run: swift run compatibility-checks
+      - run: swift build --product intel-computer-use-compat
       - run: bash scripts/build.sh
