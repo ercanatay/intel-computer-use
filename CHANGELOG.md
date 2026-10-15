@@ -19,6 +19,9 @@ has been published yet; the current project version is a development build.
   most three earned reset credits in total, with durable idempotency reservations.
 - Python integration/regression tests, Swift guard checks, and GitHub Actions CI.
 - Public GitHub repository accepting community issues and pull requests.
+- Draft English architecture for an independently signed Intel compatibility
+  layer, with diagnostic-only interoperability, authenticated-task, and isolated
+  locked-use gates. This is a design document, not an implemented feature.
 
 ### Changed
 
