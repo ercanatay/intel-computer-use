@@ -140,9 +140,8 @@ final class DesktopController {
             throw BridgeFailure("window_moved", "Input stopped because the target window moved. Take another snapshot.")
         }
         try requireSession()
-        guard !app.isTerminated, NSWorkspace.shared.frontmostApplication?.processIdentifier == app.processIdentifier else {
-            throw BridgeFailure("focus_changed", "Input stopped because the target app lost focus.")
-        }
+        try ForegroundInputPolicy.requireFrontmost(targetPID: app.processIdentifier,
+            frontmostPID: NSWorkspace.shared.frontmostApplication?.processIdentifier, terminated: app.isTerminated)
     }
 
     func checkPoint(_ point: CGPoint, app: NSRunningApplication, target: AXUIElement) throws {
@@ -155,10 +154,11 @@ final class DesktopController {
         }
         AXUIElementSetMessagingTimeout(element, 1)
         var processID: pid_t = 0
-        guard AXUIElementGetPid(element, &processID) == .success, processID == app.processIdentifier,
-              CFEqual(element, target) || attribute(element, kAXWindowAttribute).map({ CFEqual($0, target) }) == true else {
-            throw BridgeFailure("point_occluded", "Another window covers the selected point. Input was not sent.")
-        }
+        let hitPID = AXUIElementGetPid(element, &processID) == .success ? processID : nil
+        let targetWindowMatches = hitPID == app.processIdentifier &&
+            (CFEqual(element, target) || attribute(element, kAXWindowAttribute).map({ CFEqual($0, target) }) == true)
+        try ForegroundInputPolicy.requirePointOwner(targetPID: app.processIdentifier,
+            hitPID: hitPID, targetWindowMatches: targetWindowMatches)
     }
 
     func focus(app: NSRunningApplication, windowID: UInt32, frame: CGRect) async throws -> AXUIElement {
