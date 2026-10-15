@@ -6,6 +6,10 @@
 session. It does not install a macOS authorization plugin or make the official
 ChatGPT Locked Use toggle succeed.
 
+The separate [Phase 2A diagnostic](compatibility.md) now demonstrates isolated
+IPC-5 client negotiation and denial only. Actual host routing remains blocked;
+this is not an unlock implementation or a repair for the official toggle.
+
 `./scripts/icu doctor` checks known vendor helper and installer locations without
 modifying them. File presence alone does not prove an official, compatible,
 correctly signed, or functioning unlock implementation.
