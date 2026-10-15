@@ -15,7 +15,7 @@ unlock experiment. Written-design review comes next; implementation planning
 follows only after approval. Publication does not imply feature availability.
 
 This document extends the original design's Phase 2 research direction. All
-existing Phase 1 guards remain unchanged. Its reviewed implementation scope is
+existing Phase 1 guards remain unchanged. Its proposed implementation scope is
 limited to **Phase 2A**, described below. Phases 2B and 2C are separate future
 designs, not authorization to implement a full unlock stack.
 
