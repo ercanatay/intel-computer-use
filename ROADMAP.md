@@ -26,6 +26,10 @@ does not activate that setting. This is planned work, not an available feature.
 - [ ] Verify that the official setting can be enabled and persists on an Intel Mac.
 - [x] Read-only vendor payload and installer diagnostics.
 - [x] Document missing-component evidence and integration requirements.
+- [x] Compare the same-version public Apple Silicon payload read-only; verify
+  six ARM64-only native components and their signatures.
+- [x] Characterize the installed IPC-5 client with seven isolated, in-memory
+  checks; confirm the vendor authorization plugin's peer-identity check.
 - [ ] Obtain a supported Intel-compatible unlock implementation and trust contract.
 - [ ] Validate trusted-turn authorization, display shielding, physical-input relock,
   manual-unlock fallback, and login-keychain behavior on a disposable test account.
@@ -45,8 +49,9 @@ Remaining acceptance work is blocked by external dependencies:
 - The first scheduled model job ran and saved its thread ID. Exact-thread
   continuation verification remains pending. Background jobs must not launch
   other workers or consume credits themselves.
-- Phase 2 requires the missing supported Intel-compatible vendor unlock payload
-  and installer, plus a verifiable trusted-turn authorization contract. A vendor
-  component and its support/signing contract must be supplied before integration
-  or disposable-account validation can proceed. Native guard tests do not
-  establish locked-session support.
+- Phase 2 has a verified blocker for reusing the original authorization plugin:
+  it checks the service's OpenAI signing and team identifiers. A supported Intel
+  payload is still missing. A clean-room replacement is not proven impossible,
+  but its complete trust and task-lifecycle contract remains unverified and needs
+  a separately reviewed design. The isolated IPC experiment and native guard
+  tests do not establish locked-session support.
