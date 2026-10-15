@@ -22,6 +22,10 @@ has been published yet; the current project version is a development build.
 - Draft English architecture for an independently signed Intel compatibility
   layer, with diagnostic-only interoperability, authenticated-task, and isolated
   locked-use gates. This is a design document, not an implemented feature.
+- Diagnostic-only Phase 2A implementation plan with explicit interfaces,
+  red-green checks, private transport, peer evidence, bounded lifecycle, and
+  separate A1/A2/A3 acceptance. The design is approved for planning; execution
+  remains pending plan review and method selection.
 
 ### Changed
 
