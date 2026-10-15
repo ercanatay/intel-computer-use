@@ -1,6 +1,7 @@
 # Intel Compatibility Layer Design
 
-Status: **Design approved for Phase 2A planning on 2026-10-15. Not implemented.**
+Status: **Design and diagnostic Phase 2A plan approved on 2026-10-15.
+A1/A2 implemented; A3 blocked. Phase 2A partial; Locked Use not enabled.**
 
 ## Intent and approval boundary
 
@@ -11,9 +12,10 @@ useful Computer Use while locked, not merely making a settings toggle look on.
 
 The user approved this written design for Phase 2A planning on 2026-10-15.
 The [implementation plan](../plans/2026-10-15-intel-compatibility-phase-2a.md)
-now awaits review and an execution-method choice. Design approval does not
-approve code execution, installation, app restart, privileged changes, or a live
-unlock experiment. Publication does not imply feature availability.
+was subsequently approved for native sequential execution. The
+[runbook](../../compatibility.md) records A1/A2 and the A3 blocker. This approval
+does not authorize installation, app restart, host overrides, privileged changes
+or a live unlock experiment. Publication does not imply Locked Use availability.
 
 This document extends the original design's Phase 2 research direction. All
 existing Phase 1 guards remain unchanged. Its proposed implementation scope is
