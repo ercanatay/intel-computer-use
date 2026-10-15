@@ -26,6 +26,12 @@ actual-host provider route. No further autonomous task is queued. Do not
 unpause the supervisor, retry indefinitely, or change host routing. A newly
 evidenced exact route needs separate approval; quota resets do not bypass it.
 
+[A3 integration issue #1](https://github.com/ercanatay/intel-computer-use/issues/1)
+now records the reproduction, external references and route approval/restoration
+checklist. The 2026-10-15 documentation/upstream review did not validate a route.
+The tracking/documentation step is complete, not authorization for a host
+experiment or a newly queued background task. Keep the supervisor paused.
+
 ## Human-dependent validation
 
 Live input needs user-granted Accessibility permission. Window capture also
