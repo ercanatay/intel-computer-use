@@ -18,6 +18,12 @@ unverified; background jobs must not launch other workers themselves. Phase 2
 depends on the vendor implementation and trust contract below; record new
 external evidence before resuming that work.
 
+The user approved preparing an English independent-compatibility design. It is
+now a [draft for written review](superpowers/specs/2026-10-15-intel-compatibility-design.md).
+This is not implementation approval: do not start a compatibility service,
+unpause the supervisor, or run a real-host routing experiment. After written
+design approval, the next deliverable is a separately reviewed Phase 2A plan.
+
 ## Human-dependent validation
 
 Live input needs user-granted Accessibility permission. Window capture also
@@ -34,7 +40,7 @@ contract are missing. A read-only same-version ARM64 reference inspection and
 seven isolated IPC checks are now recorded in `docs/locked-use.md`. The original
 authorization plugin checks the service's OpenAI team and signing identity;
 reusing it with an independently signed service is not a viable integration.
-A clean-room replacement remains an unproven design option, not a queued task
+A clean-room replacement remains an unproven draft design, not a queued task
 or an authorized installation. See `docs/locked-use.md`. Do not install an authorization
 plugin, weaken authentication, store an OS password, patch ChatGPT, or fabricate
 an installer response. Once useful local work is exhausted, return `blocked`
